@@ -1,7 +1,6 @@
 (ns dpom.test-actions-test
   (:require
-    [clojure.test :refer [deftest is testing]]
-    ))
+    [clojure.test :refer [deftest is testing]]))
 
 
 (deftest a-test
