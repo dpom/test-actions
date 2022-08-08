@@ -23,8 +23,7 @@ jobs:
     strategy:
       matrix:
         project-dir:
-          - toolbox
-          - report-generator
+          - proj1
     steps:
       - uses: actions/checkout@v3
       - name: Install and configure runtimes and tools
@@ -38,8 +37,7 @@ jobs:
     strategy:
       matrix:
         project-dir:
-          - toolbox
-          - report-generator
+          - proj1
     steps:
       - uses: actions/checkout@v3
       - name: Install and configure runtimes and tools
@@ -53,8 +51,7 @@ jobs:
     strategy:
       matrix:
         project-dir:
-          - toolbox
-          - report-generator
+          - proj1
     steps:
       - uses: actions/checkout@v3
       - name: Install and configure runtimes and tools
