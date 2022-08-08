@@ -1,0 +1,37 @@
+{:min-bb-version "0.8.156"
+ :deps           {failjure/failjure {:mvn/version "2.2.0"}}
+ :tasks
+ {:requires ([babashka.fs :as fs]
+             [babashka.tasks :refer [shell]])
+
+  clean {:doc  "clean project"
+         :task (clojure {:dir "."} "-T:build clean")}
+
+  nrepl {:doc  "starts the nREPL"
+         :task (clojure {:dir "."} "-M:dev:nrepl")}
+ 
+  cider {:doc  "starts the nREPL"
+         :task (clojure {:dir "."} "-M:dev:nrepl:cider")}
+
+  eastwood {:doc  "run eastwood linter"
+            :task (clojure {:dir "."} "-M:eastwood")}
+
+  kibit {:doc  "run kibit linter"
+         :task (clojure {:dir "."} "-M:kibit ")}
+
+  kondo {:doc  "run kondo linter"
+         :task (clojure {:dir "."} "-M:kondo src test")}
+
+  test {:doc  "runs tests"
+        :task (clojure {:dir "."} "-M:test")}
+
+  uberjar {:doc  "builds the uberjar"
+           :task (clojure {:dir "."} "-T:build all")}
+  
+  style-check {:doc  "check style"
+               :task (shell {:dir "."} "cljstyle check")}
+
+  format {:doc  "Formats codebase"
+          :task (shell {:dir "."} "cljstyle fix")}
+
+  }}

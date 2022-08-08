@@ -1,0 +1,65 @@
+name: CI
+
+on: push
+
+jobs:
+  style-check:
+    name: Check code style
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        project-dir:
+          - proj1
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install and configure runtimes and tools
+        uses: ./.github/actions/prepare
+      - run: bb style-check
+        working-directory: ${{ matrix.project-dir }}
+        
+  lint-kondo:
+    name: Check using kondo
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        project-dir:
+          - toolbox
+          - report-generator
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install and configure runtimes and tools
+        uses: ./.github/actions/prepare
+      - run: clj-kondo --lint src test
+        working-directory: ${{ matrix.project-dir }}
+ 
+  lint-kibit:
+    name: Check using kibit
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        project-dir:
+          - toolbox
+          - report-generator
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install and configure runtimes and tools
+        uses: ./.github/actions/prepare
+      - run: bb kibit
+        working-directory: ${{ matrix.project-dir }}
+ 
+  test:
+    name: Test
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        project-dir:
+          - toolbox
+          - report-generator
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install and configure runtimes and tools
+        uses: ./.github/actions/prepare
+      - run: bb test
+        working-directory: ${{ matrix.project-dir }}
+        
+ 

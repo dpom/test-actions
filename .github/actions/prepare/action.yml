@@ -1,0 +1,19 @@
+name: Preparatory phase
+description: install tools
+
+runs:
+   using: "composite"
+   steps:
+     - name: Install Java
+       uses: actions/setup-java@v3
+       with:
+         distribution: temurin
+         java-version: '17'
+         java-package: jre
+     - name: Install Clojure tools
+       uses: DeLaGuardo/setup-clojure@7.0
+       with:
+         cli: 1.11.1.1113
+         bb: 0.9.161
+         clj-kondo: 2022.06.22
+         cljstyle: 0.15.0
